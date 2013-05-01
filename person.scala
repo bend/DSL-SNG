@@ -3,9 +3,8 @@ package ssng //simul social growth
 
 object RelationType extends Enumeration {
   type RelationType = Value
-  val ParentOf, GrandParentOf = Value
+  val ParentOf, GrandParentOf = Value //TODO complete with more relations
 }
-
 
 case class Name(first: String, last: String)
 
