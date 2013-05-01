@@ -14,9 +14,15 @@ case class Relation(person1: Person, relationType : RelationType )
 
 case class Person(name: Name, age:Int, relations:List[Relation]){
 
-  def addRelation(rel: Relation) = Person(name, age, relations.add(rel))
+  def addRelation(rel: Relation) = Person(name, age, relations :+ rel)
   
-  def deleteRelation(rel: Relation) = {
-    
+  def delRelation(rel: Relation) = {
+    relations.filter( _ != rel )
+    /*
+    var newList = List[Relation]()
+    relations.foreach { r => 
+      if (r != rel) newList :+ r
+    }
+    */
   }
 }
