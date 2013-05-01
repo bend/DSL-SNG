@@ -6,8 +6,17 @@ object RelationType extends Enumeration {
   val ParentOf, GrandParentOf = Value //TODO complete with more relations
 }
 
-case class Name(first: String, last: String)
+import RelationType._
 
-case class Relation(person1: Person, person2: Person, relationType : RelationType )
+case class Name(first: String, last: String) 
 
-case class Person(name: Name, age:Int, relations:List[Relation])
+case class Relation(person1: Person, relationType : RelationType ) 
+
+case class Person(name: Name, age:Int, relations:List[Relation]){
+
+  def addRelation(rel: Relation) = Person(name, age, relations.add(rel))
+  
+  def deleteRelation(rel: Relation) = {
+    
+  }
+}
