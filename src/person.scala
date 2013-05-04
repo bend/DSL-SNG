@@ -5,7 +5,7 @@ import scala.collection.mutable.ArrayBuffer
 
 object RelationType extends Enumeration {
   type RelationType = Value
-  var ParentOf, GrandParentOf = Value //TODO complete with more relations
+  var Friend, Family, Colleagues, Aquaitances= Value //TODO complete with more relations
 }
 
 import RelationType._
@@ -14,22 +14,16 @@ case class Name(first: String, last: String)
 
 case class Relation(var person1: Person, var relationType : RelationType ) 
 
-case class Person(var name: Name, var age:Int, var relations:List[Relation]){
+class Person(var name: Name, var age:Int, var paranoia_leve:Int){
   var joined = false
   var last_change = 0
+  var relations = ArrayBuffer[Relation]()
 
 
-  def addRelation(rel: Relation) = Person(name, age, relations :+ rel)
-
-  def delRelation(rel: Relation) = {
-    relations.filter( _ != rel )
-    /*
-    var newList = List[Relation]()
-    relations.foreach { r => 
-      if (r != rel) newList :+ r
-}
-     */
-    }
+  def addRelation(rel: Relation)  = {
+    relations+=rel
+    rel.person1.relations+=Relation(this, rel.relationType)
+  }
 
   def join(day: Int) {
     if (!joined) {
