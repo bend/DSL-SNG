@@ -12,7 +12,7 @@ case class Name(first: String, last: String)
 
 case class Relations(nb_friends:Int, nb_gf:Int, nb_family:Int, nb_children: Int, nb_aquaitances:Int) 
 
-case class Params(paranoia_level: Int, jealousy_level:Int, worry_level:Int, var friends_activity: Int) 
+case class Params(paranoia_level: Int, jealousy_level:Int, worry_level:Int, friends_activity: Int) 
 
 class Person(var name: Name, var age:Int, var relations : Relations, var params:Params, var scenarios:ArrayBuffer[Scenario]){
   var joined = false
