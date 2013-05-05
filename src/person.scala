@@ -12,18 +12,13 @@ import RelationType._
 
 case class Name(first: String, last: String) 
 
-case class Relation(var person1: Person, var relationType : RelationType ) 
+case class Relations(nb_friends:Int, nb_gf:Int, nb_family:Int, nb_children: Int, nb_aquaitances:Int) 
 
-class Person(var name: Name, var age:Int, var paranoia_leve:Int){
+case class Params(paranoia_level: Int, jealousy_level:Int, worry_level:Int) 
+
+class Person(var name: Name, var age:Int, var relations : Relations, var params:Params){
   var joined = false
   var last_change = 0
-  var relations = ArrayBuffer[Relation]()
-
-
-  def addRelation(rel: Relation)  = {
-    relations+=rel
-    rel.person1.relations+=Relation(this, rel.relationType)
-  }
 
   def join(day: Int) {
     if (!joined) {
@@ -40,12 +35,6 @@ class Person(var name: Name, var age:Int, var paranoia_leve:Int){
       // Observer.leave(day)
       last_change = day
     }
-  }
+ }
 
-  // returns whether a change could be made according to the last change
-  def change(days: Int): Boolean = {
-    //if (last_change != 0 && days < Simulation.generator.nextDouble * 1)
-    // return true
-    return false
-  }
 }
