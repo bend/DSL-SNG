@@ -2,7 +2,6 @@ package scenarios
 
 import scala.util.Random
 import api.Person
-import api.Parameters
 
 trait Notification extends Scenario {
 	override def simulate(p: Person) : (Int, Int) = {
