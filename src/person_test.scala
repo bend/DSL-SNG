@@ -1,6 +1,7 @@
 package ssng.api //simul social growth
 
 import ssng.api._
+import api.Person
 
 object TestPerson extends App {
   var p1 = new Person(Name("Ben", "D"), 23, 10)
