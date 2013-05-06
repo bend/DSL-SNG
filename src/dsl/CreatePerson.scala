@@ -10,7 +10,7 @@ object Create_person {
 
 class TmpAge(name:String) {
   def aged_of(age:Int): TmpAttr1 = {
-    var p = new Person(name, age, Relations(0,0,0,0,0), Params(0,0,0,0), null) 
+    var p = new Person(name, age, Relations(0,0,0,0,0), Params(0,0,0,0,0), null) 
     Simulator.add_person(p)
     return new TmpAttr1(p)
   }

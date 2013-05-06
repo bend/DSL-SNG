@@ -6,7 +6,7 @@ import scenarios.Scenario
 
 object Simulator{
   var persons: ArrayBuffer[Person] = new ArrayBuffer[Person]()
-  var stats: HashMap[Person, ArrayBuffer[(Int,Int)]] = new HashMap[Person, ArrayBuffer[(Int,Int)]]()
+  var stats: HashMap[Person, Array[(Int,Int)]] = new HashMap[Person, Array[(Int,Int)]]()
   var days = 0
   var scenarios : ArrayBuffer[Scenario] = new ArrayBuffer[Scenario]()
 
@@ -16,11 +16,13 @@ object Simulator{
 
 	def run(days: Int) {
 	  	this.days = days
-	  	for(day <- 0 to days) {
+	  	for(day <- 1 to days) {
+	  	  println("Jour "+day)
 			for(p <- persons) {
-              if(!stats.contains(p)) stats(p) = new ArrayBuffer[(Int,Int)]()
+              if(!stats.contains(p)) stats(p) = new Array[(Int,Int)](days)
               p.scenarios = scenarios
-              stats(p) += p.simulate(day)
+              stats(p)(day-1) = p.simulate(day)
+              println("Stat "+p.name+" : "+stats(p)(day-1))
 			}
 	  	}
 	}
@@ -28,19 +30,11 @@ object Simulator{
 	 * Display the probabilities for each day and each type of person to join/leave, depending on the scenarios
 	 */
 	def show() {
-	  for(day <- 0 to days) {
+	  for(day <- 1 to days) {
 		  println("Day "+day)
 		  for(p <- persons) {
-            var s = stats(p)
-            var avg1 = 0
-            var avg2 = 0
-            for(e <- s){
-              avg1 += e._1
-              avg2 += e._2
-            }
-            avg1 = avg1/ days
-            avg2= avg2/ days
-            println("Stats for user" + p.name + ": (" + avg1 + ","+avg2+")")
+            var s = stats(p)(day-1)
+            println("Stats for user" + p.name + ": (" + s._1 + ","+s._2+")")
 		  }
 	  }
 	}
