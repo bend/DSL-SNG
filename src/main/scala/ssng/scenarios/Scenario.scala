@@ -4,6 +4,6 @@ import ssng.api.Person
 
 trait Scenario {
   
-  def simulate(p: Person) : (Int, Int) = {return null}
+  def simulate(p: Person, day:Int) : (Int, Int) = {return null}
 
 }

@@ -36,10 +36,10 @@ class Person(var name: Name, var age:Int, var relations : Relations, var params:
       last_change = day
     }
  }
-  def simulate(): ((Int, Int)) = {
+  def simulate(day:Int): ((Int, Int)) = {
     var stats_day = (0,0)
     for(s <- scenarios) {
-      var stats_scenario = s.simulate(this)
+      var stats_scenario = s.simulate(this, day)
       stats_day = (stats_day._1 + stats_scenario._1, stats_day._2 + stats_scenario._2)
     }
     return stats_day

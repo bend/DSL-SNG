@@ -15,7 +15,7 @@ class Simulator(var persons: ArrayBuffer[Person]){
           println("test3")
 			for(p <- persons) {
               if(!stats.contains(p)) stats(p) = new ArrayBuffer[(Int,Int)]()
-              stats(p) += p.simulate()
+              stats(p) += p.simulate(day)
 			}
 	  	}
 	}
