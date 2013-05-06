@@ -1,25 +1,24 @@
 package ssng.api
 
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.HashMap
 import ssng.scenarios.Scenario
 
-class Simulator(var persons: ArrayBuffer[Person],var scenarios: ArrayBuffer[ArrayBuffer[Scenario]], var days: Int ){
+class Simulator(var persons: ArrayBuffer[Person]){
 
-  var stats: ArrayBuffer[ArrayBuffer[(Int, Int)]] = new ArrayBuffer[ArrayBuffer[(Int,Int)]]
+  var stats: HashMap[Person, ArrayBuffer[(Int,Int)]] = new HashMap[Person, ArrayBuffer[(Int,Int)]]()
+
+  var days = 0
 	def run(days: Int) {
 	  	this.days = days
-        println("test")
-		stats = new ArrayBuffer[ArrayBuffer[(Int, Int)]]
-        println("test2")
 	  	for(day <- 0 to days) {
           println("test3")
 			for(p <- persons) {
-              println("test4")
-				stats(day)(p.id) = p.simulate()
+              if(!stats.contains(p)) stats(p) = new ArrayBuffer[(Int,Int)]()
+              stats(p) += p.simulate()
 			}
 	  	}
 	}
-	
 	/*
 	 * Display the probabilities for each day and each type of person to join/leave, depending on the scenarios
 	 */
@@ -27,7 +26,16 @@ class Simulator(var persons: ArrayBuffer[Person],var scenarios: ArrayBuffer[Arra
 	  for(day <- 0 to days) {
 		  println("Day "+day)
 		  for(p <- persons) {
-		    println("Probability for "+p.name+" "+stats(day)(p.id))
+            var s = stats(p)
+            var avg1 = 0
+            var avg2 = 0
+            for(e <- s){
+              avg1 += e._1
+              avg2 += e._2
+            }
+            avg1 = avg1/ days
+            avg2= avg2/ days
+            println("Stats for user" + p.name + ": (" + avg1 + ","+avg2+")")
 		  }
 	  }
 	}
