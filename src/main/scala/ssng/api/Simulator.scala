@@ -4,15 +4,18 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import ssng.scenarios.Scenario
 
-class Simulator(var persons: ArrayBuffer[Person]){
-
+object Simulator{
+  var persons: ArrayBuffer[Person] = new ArrayBuffer[Person]()
   var stats: HashMap[Person, ArrayBuffer[(Int,Int)]] = new HashMap[Person, ArrayBuffer[(Int,Int)]]()
-
   var days = 0
+
+  def add_person(person: Person) {
+    persons+=person
+  }
+
 	def run(days: Int) {
 	  	this.days = days
 	  	for(day <- 0 to days) {
-          println("test3")
 			for(p <- persons) {
               if(!stats.contains(p)) stats(p) = new ArrayBuffer[(Int,Int)]()
               stats(p) += p.simulate(day)

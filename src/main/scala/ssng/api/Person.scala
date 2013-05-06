@@ -10,7 +10,8 @@ object RelationType extends Enumeration {
 
 case class Relations(var nb_friends:Int, var nb_gf:Int, var nb_family:Int, var nb_children: Int, var nb_aquaitances:Int) 
 
-case class Params(paranoia_level: Int, jealousy_level:Int, worry_level:Int, friends_activity: Int) 
+case class Params(var paranoia_level: Int, var jealousy_level:Int, var worry_level:Int,
+  var friends_activity: Int) 
 
 class Person(var name: String, var age:Int, var relations : Relations, var params:Params, var scenarios:ArrayBuffer[Scenario]){
   var joined = false
