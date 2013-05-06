@@ -4,6 +4,6 @@ import api.Person
 
 trait Scenario {
   
-  def simulate(p: Person, day:Int) : (Int, Int) = {return null}
+  def simulate(p: Person, day:Int) : (Float, Float) = {return null}
 
 }

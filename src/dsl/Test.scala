@@ -14,12 +14,12 @@ object Main extends App {
     tolerance -> tolerance.high
     friends_activity -> friends_activity.extreme
   }
-  Create_person named "Chris" aged_of 24 with_friends 440 with_family 26 with_aquaitances 0 with_gf 1 with_children 4 with_params {
+  Create_person named "Chris" aged_of 44 with_friends 20 with_family 20 with_aquaitances 0 with_gf 1 with_children 0 with_params {
     paranoid -> paranoid.medium
     jealous -> jealous.high
     worried -> worried.medium
     tolerance -> tolerance.medium
-    friends_activity -> friends_activity.not
+    friends_activity -> friends_activity.low
   }
 
   Simulate with_scenarios Scenarios.notification and Scenarios.relationship during 10

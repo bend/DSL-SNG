@@ -6,7 +6,7 @@ import scenarios.Scenario
 
 object Simulator{
   var persons: ArrayBuffer[Person] = new ArrayBuffer[Person]()
-  var stats: HashMap[Person, Array[(Int,Int)]] = new HashMap[Person, Array[(Int,Int)]]()
+  var stats: HashMap[Person, Array[(Float,Float)]] = new HashMap[Person, Array[(Float,Float)]]()
   var days = 0
   var scenarios : ArrayBuffer[Scenario] = new ArrayBuffer[Scenario]()
 
@@ -19,7 +19,7 @@ object Simulator{
 	  	for(day <- 1 to days) {
 	  	  println("Jour "+day)
 			for(p <- persons) {
-              if(!stats.contains(p)) stats(p) = new Array[(Int,Int)](days)
+              if(!stats.contains(p)) stats(p) = new Array[(Float,Float)](days)
               p.scenarios = scenarios
               stats(p)(day-1) = p.simulate(day)
               println("Stat "+p.name+" : "+stats(p)(day-1))
