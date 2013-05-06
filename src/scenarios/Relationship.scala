@@ -1,5 +1,0 @@
-package scenarios
-
-class Relationship {
-
-}
