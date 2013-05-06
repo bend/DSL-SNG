@@ -30,3 +30,13 @@ object worried {
     Simulator.persons.last.params.worry_level = i
   }
 }
+
+object active {
+  val not = 0
+  val medium = 50
+  val high =100
+
+  def ->(i:Int) {
+    Simulator.persons.last.params.friends_activity = i
+  }
+}

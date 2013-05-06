@@ -8,6 +8,7 @@ object Simulator{
   var persons: ArrayBuffer[Person] = new ArrayBuffer[Person]()
   var stats: HashMap[Person, ArrayBuffer[(Int,Int)]] = new HashMap[Person, ArrayBuffer[(Int,Int)]]()
   var days = 0
+  var scenarios : ArrayBuffer[Scenario] = new ArrayBuffer[Scenario]()
 
   def add_person(person: Person) {
     persons+=person
@@ -18,6 +19,7 @@ object Simulator{
 	  	for(day <- 0 to days) {
 			for(p <- persons) {
               if(!stats.contains(p)) stats(p) = new ArrayBuffer[(Int,Int)]()
+              p.scenarios = scenarios
               stats(p) += p.simulate(day)
 			}
 	  	}

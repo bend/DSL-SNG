@@ -2,7 +2,7 @@ package ssng.dsl
 
 import scala.collection.mutable.ArrayBuffer
 import ssng.scenarios._
-import ssng.dsl.rules._
+import ssng.dsl.Rules._
 object Main extends App {
   
   Create_person named "Ben" aged_of 23.years with_friends 50 with_family 22 with_aquaitances 10 with_gf 1 with_children 0
@@ -10,6 +10,9 @@ object Main extends App {
     paranoid -> paranoid.medium
     jealous -> jealous.high
     worried -> 22
+    active -> 50
   }
+
+  Simulate with_scenarios Scenarios.notification and Scenarios.notification during 1.years
 
 }

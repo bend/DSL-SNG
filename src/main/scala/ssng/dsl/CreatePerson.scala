@@ -1,12 +1,6 @@
 package ssng.dsl
 import ssng.api._
-
-object rules {
-	implicit def Int2Duration(i: Int) = new Duration(i)
-	implicit def int2Float(i: Int) = i.toFloat
-}
-
-import rules._
+import ssng.dsl.Rules._
 
 object Create_person {
   def named(name: String): TmpAge = {
