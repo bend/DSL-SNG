@@ -8,13 +8,11 @@ object RelationType extends Enumeration {
   var Friend, Family, Colleagues, Aquaitances= Value //TODO complete with more relations
 }
 
-case class Name(first: String, last: String) 
-
-case class Relations(nb_friends:Int, nb_gf:Int, nb_family:Int, nb_children: Int, nb_aquaitances:Int) 
+case class Relations(var nb_friends:Int, var nb_gf:Int, var nb_family:Int, var nb_children: Int, var nb_aquaitances:Int) 
 
 case class Params(paranoia_level: Int, jealousy_level:Int, worry_level:Int, friends_activity: Int) 
 
-class Person(var name: Name, var age:Int, var relations : Relations, var params:Params, var scenarios:ArrayBuffer[Scenario]){
+class Person(var name: String, var age:Int, var relations : Relations, var params:Params, var scenarios:ArrayBuffer[Scenario]){
   var joined = false
   var last_change = 0
   var id = 0
