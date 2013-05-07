@@ -24,13 +24,16 @@ class Notification extends Scenario {
 		  var max_notif = ((p.params.friends_activity/100.0f)*p.nbr_relations)
 		  if(max_notif <= 0) max_notif = 10
 		  var notifications_this_day = Random.nextInt(math.round(max_notif))
+		  if(notifications_this_day == 0) notifications_this_day = 1
 	        
 		  chance_to_leave += notifications_this_day/(if(p.params.tolerance_level==0) 1 else p.params.tolerance_level)
 	  }
 	  
 	  chance_to_leave /= good_average
-	  if(chance_to_leave > 3f) chance_to_leave = 3f
-      
+	  
+      var param_tolerance = p.params.friends_activity / (if(p.params.tolerance_level==0) 1 else p.params.tolerance_level)
+	  if(chance_to_leave > param_tolerance) chance_to_leave = param_tolerance
+	  
 	  return (0f,chance_to_leave)
 	  
 	}

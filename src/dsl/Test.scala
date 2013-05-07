@@ -21,6 +21,13 @@ object Main extends App {
     tolerance -> tolerance.medium
     friends_activity -> friends_activity.low
   }
+  
+  Create_person named "David" aged_of 30.years with_friends 2000 with_family 20 with_aquaitances 50 with_gf 1 with_children 20 with_params {
+    paranoid -> paranoid.extreme
+    jealous -> jealous.extreme
+    tolerance -> tolerance.low
+    friends_activity -> friends_activity.extreme
+  }
   /*
   Create_person named "Jack" aged_of 23 with_params {
     paranoid -> paranoid.medium
