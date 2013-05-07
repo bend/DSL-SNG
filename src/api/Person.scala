@@ -4,11 +4,6 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scenarios.Scenario
 
-object RelationType extends Enumeration {
-  type RelationType = Value
-  var Friend, Family, Colleagues, Aquaitances= Value //TODO complete with more relations
-}
-
 case class Relations(var nb_friends:Int, var nb_gf:Int, var nb_family:Int, var nb_children: Int, var nb_aquaitances:Int) 
 
 case class Params(var paranoia_level: Int, var jealousy_level:Int, var tolerance_level: Int, var friends_activity: Int) 
