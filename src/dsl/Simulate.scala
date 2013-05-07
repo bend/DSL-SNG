@@ -41,7 +41,6 @@ class SimulateTmp {
 
   def during(duration: Int )  = {
     Simulator run duration
-    Simulator show
   }
 
 }

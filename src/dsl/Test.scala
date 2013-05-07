@@ -34,5 +34,6 @@ object Main extends App {
   }
   */
 
-  Simulate with_scenarios Scenarios.all during 1.week
+  Simulate with_scenarios Scenarios.all during 10.year
+    Simulator get_stats 3
 }

@@ -29,16 +29,46 @@ object Simulator{
 	 * Display the probabilities for each day and each type of person to join/leave, depending on the scenarios
 	 */
 	def show() {
+	}
+	/**
+	 * If period = 0 -> each day
+	 * If period = 1 -> each week
+	 * if period = 2 -> each month
+	 * if period = 3 -> each year
+	 */
+	def get_stats(value: Int) {
+	  
+	  var sg = HashMap[String, (Float, Float)]()
+	  
+	  var period = 1
+	  if(value == 0) period = 1
+	  else if(value == 1) period = 7
+	  else if(value == 2) period = 30
+	  else if(value == 3) period = 365
+	  
+	  var i = 1
 	  for(day <- 1 to days) {
-		  println("Day "+day)
-		  for(p <- persons) {
-            var s = stats(p)(day-1)
-            for(sc <- s) {
-            	println("Stats for user " + p.name + ": (" + sc._1 + " : " + sc._2._1 + "," + sc._2._2 + ")")
-            }
-            println()
+		  if(i == 1) {
+			println("Day "+day)
 		  }
-		  println()
+		  for(p <- persons) {
+			var s = stats(p)(day-1)
+			if(!sg.contains(p.name))  sg(p.name) = (0f, 0f)
+			for(sc <- s) {
+				sg(p.name) = (sg(p.name)._1 + sc._2._1, sg(p.name)._2 + sc._2._2)
+			}
+			if(i == 1) {
+				var time_elapsed = (if(day == 1) 1 else period)
+				println("Stats globales "+p.name+" : ("+sg(p.name)._1/time_elapsed+","+sg(p.name)._2/time_elapsed+")")
+				sg(p.name) = (0f, 0f) // stats globales
+			}
+		  }
+		  if(i == 1) {
+			println()
+		  }
+		  i += 1
+		  if(i >= period) { i = 1 }
+		  
 	  }
 	}
 }

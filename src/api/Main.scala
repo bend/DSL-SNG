@@ -13,6 +13,6 @@ object Main extends App {
     Simulator add_person p1
     Simulator add_person p2
     Simulator run 10
-    Simulator show
+    Simulator get_stats 7
 
 }
