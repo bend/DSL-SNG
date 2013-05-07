@@ -64,5 +64,10 @@ class TmpAttr1(var person:Person) {
     block
     return this
   }
+  
+  def with_relations(block: => Unit): TmpAttr1 = {
+    block
+    return this
+  }
 }
 
