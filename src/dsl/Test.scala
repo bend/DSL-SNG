@@ -22,9 +22,9 @@ object Main extends App {
     friends_activity -> friends_activity.low
   }
   
-  Create_person named "David" aged_of 30.years with_friends 2000 with_family 20 with_aquaitances 50 with_gf 1 with_children 20 with_params {
-    paranoid -> paranoid.extreme
-    jealous -> jealous.extreme
+  Create_person named "David" aged_of 30.years with_friends 200 with_family 20 with_aquaitances 50 with_gf 1 with_children 20 with_params {
+    paranoid -> paranoid.not
+    jealous -> jealous.not
     tolerance -> tolerance.low
     friends_activity -> friends_activity.extreme
   }
@@ -41,6 +41,7 @@ object Main extends App {
   }
   */
 
-  Simulate with_scenarios Scenarios.all during 10.year
-    Simulator get_stats 3
+  Simulate with_scenarios Scenarios.all during 100.year
+    Simulator get_stats(365*50,false)
+    Simulator get_stats(365*50,true)
 }

@@ -15,6 +15,7 @@ case class Params(var paranoia_level: Int, var jealousy_level:Int, var tolerance
 
 class Person(var name: String, var age:Int, var relations : Relations, var params:Params, var scenarios:ArrayBuffer[Scenario]){
   def simulate(day:Int): (HashMap[String,(Float, Float)]) = {
+    age += 1
     var stats_day = HashMap[String, (Float, Float)]()
     for(s <- scenarios) {
       var stats_scenario = s.simulate(this, day)

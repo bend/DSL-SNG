@@ -30,6 +30,7 @@ class Notification extends Scenario {
 	  }
 	  
 	  chance_to_leave /= good_average
+	  chance_to_leave *= (((p.age/365f)*2f) / 100f) // More he is old, more he wants to leave because of notifications
 	  
       var param_tolerance = p.params.friends_activity / (if(p.params.tolerance_level==0) 1 else p.params.tolerance_level)
 	  if(chance_to_leave > param_tolerance) chance_to_leave = param_tolerance

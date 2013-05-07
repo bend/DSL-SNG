@@ -31,21 +31,16 @@ object Simulator{
 	def show() {
 	}
 	/**
-	 * If period = 0 -> each day
-	 * If period = 1 -> each week
-	 * if period = 2 -> each month
-	 * if period = 3 -> each year
+	 * If period = 1 -> each day
+	 * If period = 7 -> each week
+	 * if period = 30 -> each month
+	 * if period = 365 -> each year
 	 */
-	def get_stats(value: Int) {
+	def get_stats(period: Int, detailed: Boolean) {
 	  
 	  var sg = HashMap[String, (Float, Float)]()
-	  
-	  var period = 1
-	  if(value == 0) period = 1
-	  else if(value == 1) period = 7
-	  else if(value == 2) period = 30
-	  else if(value == 3) period = 365
-	  
+	  var sd = HashMap[String, HashMap[String, (Float, Float)]]()
+	  	  
 	  var i = 1
 	  for(day <- 1 to days) {
 		  if(i == 1) {
@@ -54,12 +49,20 @@ object Simulator{
 		  for(p <- persons) {
 			var s = stats(p)(day-1)
 			if(!sg.contains(p.name))  sg(p.name) = (0f, 0f)
+			if(!sd.contains(p.name))  sd(p.name) = new HashMap[String, (Float, Float)]()
 			for(sc <- s) {
 				sg(p.name) = (sg(p.name)._1 + sc._2._1, sg(p.name)._2 + sc._2._2)
+				if(!sd(p.name).contains(sc._1)) sd(p.name)(sc._1) = (0f, 0f)
+				sd(p.name)(sc._1) = (sd(p.name)(sc._1)._1 + sc._2._1, sd(p.name)(sc._1)._2 + sc._2._2)
 			}
 			if(i == 1) {
 				var time_elapsed = (if(day == 1) 1 else period)
 				println("Stats globales "+p.name+" : ("+sg(p.name)._1/time_elapsed+","+sg(p.name)._2/time_elapsed+")")
+				if(detailed) {
+					for(sc <- sd(p.name)) {
+					  println("   "+sc._1+" : ("+sc._2._1/time_elapsed+","+sc._2._2/time_elapsed+")")
+					}
+				}
 				sg(p.name) = (0f, 0f) // stats globales
 			}
 		  }
