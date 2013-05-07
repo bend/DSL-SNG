@@ -8,12 +8,15 @@ object Scenarios extends Enumeration {
   var notification = Value
   var relationship = Value
   var stalking     = Value
+  var artist	   = Value
+  var influence    = Value
   var all          = Value
 }
 
 import Scenarios._
 
 object Simulate {
+  // To take into account a new scenario, you need to add 2 lines in the following method. You also need to add the new keyword in the object Scenario
   def with_scenarios(sc : Scenarios): SimulateTmp = {
     println(sc)
     if(sc == Scenarios.notification || sc == Scenarios.all)
@@ -21,7 +24,11 @@ object Simulate {
     if(sc == Scenarios.relationship || sc == Scenarios.all)
       Simulator.scenarios+=new Relationship()
     if(sc == Scenarios.stalking || sc == Scenarios.all)
-      Simulator.scenarios+=new Relationship()
+      Simulator.scenarios+=new Stalking()
+    if(sc == Scenarios.artist || sc == Scenarios.all)
+      Simulator.scenarios+=new Artist()
+    if(sc == Scenarios.influence || sc == Scenarios.all)
+      Simulator.scenarios+=new Influence()
     return new SimulateTmp
   }
 }
@@ -34,7 +41,7 @@ class SimulateTmp {
 
   def during(duration: Int )  = {
     Simulator run duration
-    //Simulator show
+    Simulator show
   }
 
 }

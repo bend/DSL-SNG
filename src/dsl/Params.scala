@@ -22,12 +22,6 @@ object jealous extends levels {
   }
 }
 
-object worried extends levels {
-  def ->(i:Int) {
-    Simulator.persons.last.params.worry_level = i
-  }
-}
-
 object tolerance extends levels {
   def ->(i:Int) {
     Simulator.persons.last.params.tolerance_level = i

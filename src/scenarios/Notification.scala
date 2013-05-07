@@ -13,6 +13,8 @@ import api.Person
  *  the probabilities of this class are random for every days 
  */
 class Notification extends Scenario {
+	name = "Notification"
+	  
 	override def simulate(p: Person, day:Int) : (Float, Float) = {
 	  
 	  var good_average = 10
@@ -23,15 +25,13 @@ class Notification extends Scenario {
 		  if(max_notif <= 0) max_notif = 10
 		  var notifications_this_day = Random.nextInt(math.round(max_notif))
 	        
-		  //println(p.name+" : "+notifications_this_day+" ("+max_notif+") (tolerance : "+p.params.tolerance_level+", activity : "+p.params.friends_activity+", friends : "+(p.relations.nb_friends+p.relations.nb_family+p.relations.nb_aquaitances)+")")
-		  
-		  chance_to_leave += notifications_this_day/p.params.tolerance_level 
+		  chance_to_leave += notifications_this_day/(if(p.params.tolerance_level==0) 1 else p.params.tolerance_level)
 	  }
 	  
 	  chance_to_leave /= good_average
-	  if(chance_to_leave > 20) chance_to_leave = 20
+	  if(chance_to_leave > 3f) chance_to_leave = 3f
       
-	  return (0,chance_to_leave)
+	  return (0f,chance_to_leave)
 	  
 	}
 }
