@@ -3,7 +3,6 @@ package scenarios
 import api.Person
 
 trait Scenario {
-  
-  def simulate(p: Person, day:Int) : (Float, Float) = {return null}
-
+  var name = ""
+  def simulate(p: Person, day: Int): (Float, Float)
 }

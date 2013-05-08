@@ -11,31 +11,25 @@ trait levels {
 }
 
 object paranoid extends levels {
-  def ->(i:Int) {
+  def ->(i: Int) {
     Simulator.persons.last.params.paranoia_level = i
   }
 }
 
 object jealous extends levels {
-  def ->(i:Int) {
+  def ->(i: Int) {
     Simulator.persons.last.params.jealousy_level = i
   }
 }
 
-object worried extends levels {
-  def ->(i:Int) {
-    Simulator.persons.last.params.worry_level = i
-  }
-}
-
 object tolerance extends levels {
-  def ->(i:Int) {
+  def ->(i: Int) {
     Simulator.persons.last.params.tolerance_level = i
   }
 }
 
 object friends_activity extends levels {
-  def ->(i:Int) {
+  def ->(i: Int) {
     Simulator.persons.last.params.friends_activity = i
   }
 }
