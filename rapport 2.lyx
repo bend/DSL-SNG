@@ -88,10 +88,10 @@ People behavior
 \begin_layout Standard
 People can join or leave the social network based on multiple scenarios.
  These scenarios provides probabilities depending on the person's parameters,
- the number of friends he has, and other criteria.
+ the number of friends he has, and other criterias.
  These probabilities reprensents either the will of a person to join, or
  to leave the network.
- For exemple, if the person is not very tolerant about notifications, and
+ For example, if the person is not very tolerant about notifications, and
  his friends are very active, then he will more likely want to leave the
  network instead of joining it.
 \end_layout
@@ -101,7 +101,7 @@ DSL usage
 \end_layout
 
 \begin_layout Standard
-To use this DSL, it is needed to modify the file Test.scala, present in the
+To use this DSL, it is needed to modify the file Main.scala, present in the
  dsl folder of the program.
  You can also create an other file, but you will need to add the same import
  than the one present in the Test file, otherwise the DSL will not be able
@@ -328,6 +328,33 @@ Simulate with_scenarios Scenarios.Influence during 100.years
 Now you can create a file in the scenarios folder, with a class of your
  choice that extend the trait Scenario, and it will be usable for your next
  simulation.
+\end_layout
+
+\begin_layout Part*
+DSL techniques
+\end_layout
+
+\begin_layout Standard
+In order to develop this DSL we used many techniques.
+ First of all implicit conversions makes the DSL understand durations like
+ 1.year or 2.weeks.
+ We also used this technique to convert 3.person for instance to 3 (in order
+ to make it more user friendly)
+\end_layout
+
+\begin_layout Standard
+Another technique used is traits that simplifies the code (we only have
+ to declare one method that takes the trait as parameter).
+\end_layout
+
+\begin_layout Standard
+We used operator overload to let the user specify the Params or the relations
+ of a user by overloading the -> operator
+\end_layout
+
+\begin_layout Standard
+eg.
+ friend->20 or jealous->jealous.not
 \end_layout
 
 \end_body

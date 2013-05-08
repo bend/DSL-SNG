@@ -42,7 +42,7 @@ object Main extends App {
   
   Simulate with_scenarios Scenarios.all during 100.year
   
-  //Simulate on 1000.persons during 100.years
+  Simulate on 1000.persons during 100.years
   Show detailed () stats_for 10.years
 
 }
