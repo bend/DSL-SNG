@@ -23,6 +23,8 @@ object Simulator{
               p.scenarios = scenarios
               stats(p)(day-1) = p.simulate(day)
               println("Stat "+p.name+" : "+stats(p)(day-1))
+              p.age+=1
+              println("Age of "+ p.name + " is " + p.age/365)
 			}
 	  	}
 	}
