@@ -4,7 +4,7 @@ import api._
 
 object Create_person {
   def named(name: String): TmpAttr1 = {
-    var p = new Person(name, 0, Relations(0, 0, 0, 0, 0), Params(1, 1, 1, 1), null)
+    var p = new Person(name, 1, Relations(0, 0, 0, 0, 0), Params(1, 1, 1, 1), null)
     Simulator.add_person(p)
     return new TmpAttr1(p)
   }
