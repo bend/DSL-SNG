@@ -54,6 +54,6 @@ class SimulateTmp {
 
 class SimulateTmp2(x: Int){
   def during(duration: Int) = {
-    //Simulator get_evolution(duration, x)
+	  Simulator.get_evolution(duration, x)
   }
 }
