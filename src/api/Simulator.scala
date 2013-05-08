@@ -84,17 +84,20 @@ object Simulator {
     var sg = new HashMap[String, (Float, Float)]()
     var nb_join = new HashMap[String, Array[Int]]()
     var nb_leave = new HashMap[String, Array[Int]]()
+    
+    var pop = new HashMap[String, Int]()
 
     var i = 1
     for(day <- 1 to days) {
       if(i == 1) {
-        println("Evolution on day "+day)
+        println("Evolution on day "+day+" (after "+(day/365f)+" years)")
       }
       
       for(p <- persons) {
         var s = stats(p)(day - 1)
         if (!nb_join.contains(p.name)) nb_join(p.name) = new Array[Int](days)
         if (!nb_leave.contains(p.name)) nb_leave(p.name) = new Array[Int](days)
+        if (!pop.contains(p.name)) pop(p.name) = population
         if (!sg.contains(p.name)) sg(p.name) = (0f, 0f)
         for (sc <- s) {
         	sg(p.name) = (sg(p.name)._1 + sc._2._1, sg(p.name)._2 + sc._2._2)
@@ -105,28 +108,40 @@ object Simulator {
         var rand_join = Array[Int](math.round(sg(p.name)._1))
         var rand_leave = Array[Int](math.round(sg(p.name)._2))
 
+        // Partie pour compter les join
         for(h <- 0 to rand_join.length-1) {
           var rand_n = Random.nextInt(99)
-          while(rand_join.contains(rand_n) & rand_join.length < 99)
+          while(rand_join.contains(rand_n) & rand_join.length < 99){
             rand_n = Random.nextInt(99)
+          }
           rand_join(h) = rand_n
         }
-        
-        for(h <- 0 to rand_leave.length-1) {
-          var rand_n = Random.nextInt(99)
-          while(rand_leave.contains(rand_n) & (rand_join.length + rand_leave.length) < 99)
-            rand_n = Random.nextInt(99)
-          rand_leave(h) = rand_n
-        }
-        
-        for(j <- 1 to population) {
+        for(j <- 1 to pop(p.name)) {
            var rand_n = Random.nextInt(99)
            if(rand_join.contains(rand_n)) {
         	   nb_join(p.name)(day-1) += 1
-           } else if(rand_leave.contains(rand_n)) {
-    		   nb_leave(p.name)(day-1) += 1
+        	   pop(p.name) -= 1
            }
         }
+        // ---
+        
+        // Partie pour compter les leave
+        for(h <- 0 to rand_leave.length-1) {
+          var rand_n = Random.nextInt(99)
+          while(rand_leave.contains(rand_n) & (rand_join.length + rand_leave.length) < 99){
+            rand_n = Random.nextInt(99)
+          }
+          rand_leave(h) = rand_n
+        }
+        
+        for(j <- 0 to population-pop(p.name)) {
+           var rand_n = Random.nextInt(99)
+           if(rand_leave.contains(rand_n)) {
+    		   nb_leave(p.name)(day-1) += 1
+        	   pop(p.name) += 1
+           }
+        }
+        // ---
         sg(p.name) = (0f, 0f) // stats globales
       }
       
@@ -149,7 +164,7 @@ object Simulator {
     }
     
     println()
-    println("Total evolution of the population after "+days+" days")
+    println("Total evolution of the population after "+days+" days ("+(days/365f)+" years)")
     for(p <- persons) {
       var evol = 0
       for(d <- 1 to days-1) {

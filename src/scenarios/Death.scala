@@ -11,10 +11,11 @@ class Death extends Scenario {
     var chance_death: Float = 0
     var age_year: Int = p.age / 365
     if(age_year > 100){
+      println("100%")
       return (0f, 100)
     }
     chance_death = P(age_year)
-    println(chance_death*100)
+    println("Death at age : "+age_year + " : " +chance_death*100)
     return (0f, chance_death*100)
   }
 
