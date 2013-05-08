@@ -3,14 +3,8 @@ package dsl
 import api._
 
 object Create_person {
-  def named(name: String): TmpAge = {
-    return new TmpAge(name)
-  }
-}
-
-class TmpAge(name: String) {
-  def aged_of(age: Int): TmpAttr1 = {
-    var p = new Person(name, age, Relations(0, 0, 0, 0, 0), Params(1, 1, 1, 1), null)
+  def named(name: String): TmpAttr1 = {
+    var p = new Person(name, 0, Relations(0, 0, 0, 0, 0), Params(1, 1, 1, 1), null)
     Simulator.add_person(p)
     return new TmpAttr1(p)
   }
@@ -18,6 +12,11 @@ class TmpAge(name: String) {
 
 class TmpAttr1(var person: Person) {
 
+  def aged_of(age: Int): TmpAttr1 = {
+    person.age = age
+    return this
+  }
+  
   def who_is(p: Character): TmpAttr1 = {
     return this
   }
