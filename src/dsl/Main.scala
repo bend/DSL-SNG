@@ -20,28 +20,33 @@ object Main extends App {
     tolerance -> tolerance.extreme
     friends_activity -> friends_activity.extreme
   }
-/*
-  Create_person named "David" aged_of 30.years with_friends 0 with_family 20 with_aquaitances 50 with_gf 1 with_children 20 with_params {
+
+  Create_person named "David" with_friends 0 with_family 20 with_aquaitances 50 with_gf 1 with_children 20 with_params {
     paranoid -> paranoid.not
     jealous -> jealous.not
     tolerance -> tolerance.low
     friends_activity -> friends_activity.extreme
-  }
+  } aged_of 30.years
+  /*
   Create_person named "Jack" aged_of 23 with_params {
     paranoid -> paranoid.medium
   } with_wife 1 with_friends 20
 
-  Create_person named "Patrick" aged_of 22 with_params {
+  Create_person named "Patrick" with_params {
     paranoid -> paranoid.medium
   } with_relations {
     friends -> 10
     family -> 20
   }
 */
+  
+  Simulate with_scenarios Scenarios.all during 100.year
+  
 
-  Simulate with_scenarios Scenarios.all during 100.years
 
-  Show detailed () stats_for 100.years
-  Simulator.get_evolution(10.years, 100)
+  //Show detailed () stats_for 100.year
+
+  Simulate on 1000.persons during 100.years
+  //Show detailed () stats_for 10.years
 
 }

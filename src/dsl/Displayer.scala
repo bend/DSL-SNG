@@ -10,7 +10,6 @@ object Show {
   def detailed(): ShowTmp = {
     return new ShowTmp(true)
   }
-
 }
 
 class ShowTmp(detailed: Boolean) {

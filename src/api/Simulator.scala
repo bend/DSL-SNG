@@ -8,7 +8,7 @@ import scenarios.Scenario
 object Simulator {
   var persons: ArrayBuffer[Person] = new ArrayBuffer[Person]()
   var stats: HashMap[Person, Array[HashMap[String, (Float, Float)]]] = new HashMap[Person, Array[HashMap[String, (Float, Float)]]]()
-  var days = 0
+  var days: Int = 0
   var scenarios: ArrayBuffer[Scenario] = new ArrayBuffer[Scenario]()
 
   def add_person(person: Person) {
@@ -29,7 +29,6 @@ object Simulator {
     }
 
   }
-
   /**
    * If period = 1 -> each day
    * If period = 7 -> each week

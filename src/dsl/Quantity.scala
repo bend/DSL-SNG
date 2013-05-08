@@ -1,5 +1,5 @@
 package dsl
-case class Duration(val amount: Int) {
+case class Quantity(val amount: Int) {
   def years = amount * 365
   def year = amount * 365
   def months = amount * 30
@@ -8,4 +8,6 @@ case class Duration(val amount: Int) {
   def week = amount * 7
   def days = amount
   def day = amount
+  def person = amount
+  def persons = amount
 }
