@@ -28,11 +28,7 @@ object Simulator {
     }
 
   }
-  /*
-	 * Display the probabilities for each day and each type of person to join/leave, depending on the scenarios
-	 */
-  def show() {
-  }
+
   /**
    * If period = 1 -> each day
    * If period = 7 -> each week
@@ -75,6 +71,24 @@ object Simulator {
       i += 1
       if (i >= period) { i = 1 }
 
+    }
+  }
+  
+  /**
+   * If period = 1 -> each day
+   * If period = 7 -> each week
+   * if period = 30 -> each month
+   * if period = 365 -> each year
+   */
+  def get_evolution(period: Int, population: Int) {
+    var i = 1
+    for(day <- 1 to days) {
+      if(i == 1) {
+        println("Day "+day)
+      }
+      
+      i += 1
+      if (i >= period) { i = 1 }
     }
   }
 }

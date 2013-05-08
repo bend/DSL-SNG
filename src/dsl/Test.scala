@@ -8,10 +8,10 @@ import Conversions._
 
 object Main extends App {
   Create_person named "Ben" aged_of 23.years with_friends 500 with_family 22 with_aquaitances 10 with_gf 1 with_children 0 with_params {
-    paranoid -> paranoid.extreme
-    jealous -> jealous.extreme
-    tolerance -> tolerance.high
-    friends_activity -> friends_activity.extreme
+    paranoid -> paranoid.medium
+    jealous -> jealous.medium
+    tolerance -> tolerance.low
+    friends_activity -> friends_activity.high
   }
 /*
   Create_person named "Chris" aged_of 44.years with_friends 20 with_family 20 with_aquaitances 0 with_gf 1 with_children 0 with_params {
@@ -38,8 +38,8 @@ object Main extends App {
     family -> 20
   }
 */
-  Simulate with_scenarios Scenarios.death during 1.year
+  Simulate with_scenarios Scenarios.all during 100.year
 
-  Show detailed () stats_for 1.year
+  Show detailed () stats_for 100.year
 
 }
