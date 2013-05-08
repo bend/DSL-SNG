@@ -94,6 +94,8 @@ People can join or leave the social network based on multiple scenarios.
  For example, if the person is not very tolerant about notifications, and
  his friends are very active, then he will more likely want to leave the
  network instead of joining it.
+ The more the probabilities of joining and leaving are apart, the faster
+ the people will join or leave the network.
 \end_layout
 
 \begin_layout Part*

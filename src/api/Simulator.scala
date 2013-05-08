@@ -104,7 +104,7 @@ object Simulator {
         
         nb_join(p.name)(day-1) = 0
         nb_leave(p.name)(day-1) = 0
-        
+
         var rand_join = new Array[Int](math.round(sg(p.name)._1))
         var rand_leave = new Array[Int](math.round(sg(p.name)._2))
 
