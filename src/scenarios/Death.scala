@@ -10,6 +10,7 @@ class Death extends Scenario {
   override def simulate(p: Person, day: Int): (Float, Float) = {
     var chance_death: Float = 0
     var age_year: Int = day / 365
+    if(age_year > 100) return (0f, 100)
     chance_death = P(age_year)
     return (0f, chance_death*100)
   }

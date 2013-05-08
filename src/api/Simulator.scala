@@ -7,7 +7,7 @@ import scenarios.Scenario
 object Simulator {
   var persons: ArrayBuffer[Person] = new ArrayBuffer[Person]()
   var stats: HashMap[Person, Array[HashMap[String, (Float, Float)]]] = new HashMap[Person, Array[HashMap[String, (Float, Float)]]]()
-  var days = 0
+  var days: Int = 0
   var scenarios: ArrayBuffer[Scenario] = new ArrayBuffer[Scenario]()
 
   def add_person(person: Person) {
@@ -21,18 +21,15 @@ object Simulator {
         if (!stats.contains(p)) stats(p) = new Array[HashMap[String, (Float, Float)]](days)
         p.scenarios = scenarios
         stats(p)(day - 1) = p.simulate(day)
-        println("Stat " + p.name + " : " + stats(p)(day - 1))
+        println(stats(p)(day - 1))
+        //println("Stat " + p.name + " : " + stats(p)(day - 1))
         p.age += 1
         println("Age of " + p.name + " is " + p.age / 365 + " years or " + p.age + " days")
       }
     }
 
   }
-  /*
-	 * Display the probabilities for each day and each type of person to join/leave, depending on the scenarios
-	 */
-  def show() {
-  }
+ 
   /**
    * If period = 1 -> each day
    * If period = 7 -> each week
