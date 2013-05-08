@@ -38,7 +38,7 @@ object Main extends App {
     family -> 20
   }
 */
-  Simulate with_scenarios Scenarios.death during 1.year
+  Simulate with_scenarios Scenarios.death during 100.year
 
   Show detailed () stats_for 1.year
 
