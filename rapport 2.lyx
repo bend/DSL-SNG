@@ -75,14 +75,259 @@ Social Network Simulation
 
 \begin_layout Author
 Christopher Castermane, Benoît Daccache
+\begin_inset Newline newline
+\end_inset
+
+Group 17
 \end_layout
 
 \begin_layout Part*
-API Structure
+People behavior
+\end_layout
+
+\begin_layout Standard
+People can join or leave the social network based on multiple scenarios.
+ These scenarios provides probabilities depending on the person's parameters,
+ the number of friends he has, and other criteria.
+ These probabilities reprensents either the will of a person to join, or
+ to leave the network.
+ For exemple, if the person is not very tolerant about notifications, and
+ his friends are very active, then he will more likely want to leave the
+ network instead of joining it.
 \end_layout
 
 \begin_layout Part*
-DSL Implementation
+DSL usage
+\end_layout
+
+\begin_layout Standard
+To use this DSL, it is needed to modify the file Test.scala, present in the
+ dsl folder of the program.
+ You can also create an other file, but you will need to add the same import
+ than the one present in the Test file, otherwise the DSL will not be able
+ to run.
+\end_layout
+
+\begin_layout Standard
+Here is an exemple of the creation of a person
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Create_person named "Ben" aged_of 23.years with_friends 500 with_family 22
+ with_aquaitances 10 with_gf 1 with_children 0 with_params {
+\end_layout
+
+\begin_layout Plain Layout
+paranoid -> paranoid.medium 
+\end_layout
+
+\begin_layout Plain Layout
+jealous -> jealous.medium 
+\end_layout
+
+\begin_layout Plain Layout
+tolerance -> tolerance.low 
+\end_layout
+
+\begin_layout Plain Layout
+friends_activity -> friends_activity.high 
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All the parameters are mandatory in order to have all the informations needed
+ for every scenarios to work, but the order of the parameters about the
+ number of contacts or the parameters about the person doesn't matter.
+ The only important point is to keep the name and the age at the beginning.
+\end_layout
+
+\begin_layout Standard
+To start the simulation, you have to define the scenarios you want to use,
+ and the duration of the simulation, as follow.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Simulate with_scenarios Scenarios.Notifications and Scenarios.Influence during
+ 100.years
+\end_layout
+
+\begin_layout Plain Layout
+or if you want to use all the scenarios
+\end_layout
+
+\begin_layout Plain Layout
+Simulate with_scenarios Scenarios.all during 100.years
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To get the details about statistics of the will to join/leave, and the evolution
+ of the population, you can use the following.
+ For the statistics, you can have detailed number which gives information
+ off the statistics coming from each scenarios, or you can just have simplified
+ ones, which are an average of the statistics of all scenarios used for
+ the simulation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Show stats_for 100.years
+\end_layout
+
+\begin_layout Plain Layout
+or
+\end_layout
+
+\begin_layout Plain Layout
+Show detailed () stats_for 100.years
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Simulate on 1000.persons during 100.years
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+DSL modifications
+\end_layout
+
+\begin_layout Standard
+It is possible, and quite easy, to add any scenario you want.
+ For that, you first need to modify the file Simulate.scala, in the dsl folder.
+ In the object Scenarios, you have to add the keyword which will represent
+ the name of your scenario, such as :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+var influence = Value
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then, in the object Simulate, you have to add those lines, in order to use
+ the scenario Influence, when the keyword 
+\begin_inset Quotes eld
+\end_inset
+
+influence
+\begin_inset Quotes erd
+\end_inset
+
+ is used in the DSL :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+if (sc == Scenarios.influence || sc == Scenarios.all)
+\end_layout
+
+\begin_layout Plain Layout
+Simulator.scenarios += new Influence()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With these two modifications, you can now use the scenario 
+\begin_inset Quotes eld
+\end_inset
+
+influence
+\begin_inset Quotes erd
+\end_inset
+
+ in the DSL by using Scenarios.influence, such as follow, or by using Scenarios.al
+l.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Simulate with_scenarios Scenarios.Influence during 100.years
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now you can create a file in the scenarios folder, with a class of your
+ choice that extend the trait Scenario, and it will be usable for your next
+ simulation.
 \end_layout
 
 \end_body

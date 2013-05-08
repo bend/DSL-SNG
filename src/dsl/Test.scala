@@ -39,9 +39,9 @@ object Main extends App {
   }
 */
 
-  Simulate with_scenarios Scenarios.all during 10.days
+  Simulate with_scenarios Scenarios.all during 100.years
 
-  Show detailed () stats_for 10.days
-  Simulator.get_evolution(10.days, 1000000)
+  Show detailed () stats_for 100.years
+  Simulator.get_evolution(10.years, 100)
 
 }
