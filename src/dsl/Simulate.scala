@@ -34,6 +34,10 @@ object Simulate {
       Simulator.scenarios += new Death()
     return new SimulateTmp
   }
+  
+  def on(x : Int): SimulateTmp2 = {
+    return new SimulateTmp2(x)
+  }
 }
 
 class SimulateTmp {
@@ -48,3 +52,8 @@ class SimulateTmp {
 
 }
 
+class SimulateTmp2(x: Int){
+  def during(duration: Int) = {
+    Simulator get_evolution(duration, x)
+  }
+}
